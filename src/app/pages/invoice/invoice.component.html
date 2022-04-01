@@ -1,0 +1,125 @@
+<div nz-row nzJustify="center" nzAlign="middle">
+    <div nz-col nzSpan="24" nzJustify="center">
+        <h1>Invoice</h1>
+    </div>
+</div>
+<div nz-row>
+    <div nz-col nzSpan="24"><button (click)="mostrar()" nz-button nzType="primary">New Invoice</button></div>
+</div>
+<hr>
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <nz-table #basicTable [nzData]="invoice">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Correlative</th>
+                    <th>Name</th>
+                    <th>Scheduled</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{data.correlative}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.scheduled}}</td>
+                    <td>{{data.email}}</td>
+                    <td>
+                        <a (click)="mostrar(data)"><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a nz-popconfirm nzPopconfirmTitle="¿Está seguro de borrar el registro?"
+                            nzPopconfirmPlacement="bottom" (nzOnConfirm)="eliminar(data.id)" (nzOnCancel)="cancel()"
+                            nzShape="circle" nzCancelText="No" nzOkText="Si"><i nz-icon nzType="delete"
+                                nzTheme="outline"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+
+
+
+
+
+<nz-modal [(nzVisible)]="visible" nzTitle="Invoice">
+    <ng-container *nzModalContent>
+        <form nz-form nzLayout="vertical" (ngSubmit)="guardar()" [formGroup]="formInvoice">
+            <div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label>Correlative</nz-form-label>
+                        <nz-form-control nzErrorTip="Correlative incorrect">
+                            <nz-input-number formControlName="correlative" nz-input placeholder="Correlative" [nzMin]="1"  [nzStep]="1"></nz-input-number> `
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label>Scheduled</nz-form-label>
+                        <nz-form-control  nzErrorTip="Scheduled incorrect">
+                            <nz-date-picker formControlName="scheduled" nzPlaceHolder="Scheduled"></nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Name</nz-form-label>
+                        <nz-form-control nzErrorTip="Name incorrect">
+                            <input formControlName="name" nz-input placeholder="Name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Address</nz-form-label>
+                        <nz-form-control nzErrorTip="Address incorrect">
+                            <input formControlName="address" nz-input placeholder="Address" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Phone</nz-form-label>
+                        <nz-form-control nzErrorTip="Phone incorrect">
+                            <input formControlName="phone" nz-input placeholder="Phone" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Email</nz-form-label>
+                        <nz-form-control nzErrorTip="Email incorrect">
+                            <input formControlName="email" nz-input placeholder="email" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <!--<div nz-row [nzGutter]="8">
+                <div nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Special Instructions</nz-form-label>
+                        <nz-form-control nzErrorTip="Special Instructionts incorrect">
+                            <input formControlName="special" nz-input placeholder="Special Instructions" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>-->
+        </form>
+    </ng-container>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="ocultar()">Cancelar</button>
+        <button nz-button nzType="primary" (click)="guardar()">Guardar</button>
+    </div>
+</nz-modal>

@@ -4,7 +4,7 @@ export interface Invoice {
   address?: string;
   correlative: number;
   email?: string;
-  id?: string;
+  id: string;
   name: string;
   phone?: string;
   scheduled: string;

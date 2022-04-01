@@ -9,7 +9,7 @@ export interface InvoiceWithRelations {
   address?: string;
   correlative: number;
   email?: string;
-  id?: string;
+  id: string;
   invoiceDetails?: Array<InvoiceDetailWithRelations>;
   name: string;
   phone?: string;
