@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Invoice } from 'src/app/api/models';
 import { InvoiceControllerService } from 'src/app/api/services';
@@ -19,13 +19,13 @@ export class InvoiceComponent implements OnInit {
   ) { }
 
   formInvoice: FormGroup = this.fb.group({
-    id: [],
-    correlative: [],
-    scheduled: [],
-    name: [],
-    address: [],
-    phone:[],
-    email:[],
+    id: [null,Validators.required],
+    correlative: [1,Validators.required],
+    scheduled: [(new Date()).toISOString(), Validators.required],
+    name: ["",Validators.required],
+    address: ["",Validators.required],
+    phone:["",Validators.required],
+    email:["",[Validators.required, Validators.email]],
     special:[]
   })
 

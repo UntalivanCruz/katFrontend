@@ -24,15 +24,15 @@ export class LoginComponent implements OnInit {
         const token:any=resp.token;
         if(token){
           localStorage.setItem('token', token);
-          this.message.success('Bienvenido!')
+          this.message.success('Welcome!')
           this.route.navigate(['home']);
         }else{
-          this.message.error('Error inesperado, contactese con su administrador de sistemas')
+          this.message.error('Unexpected error, contact your system administrator')
         }
       },
       err=>{
         console.error(err)
-        this.message.error('No se pudo inicar sesion :( revisa tus credenciales')
+        this.message.error('Failed to login, check your credentials')
         this.buildForm();
         this.formulario = true;
         this.loading = false;

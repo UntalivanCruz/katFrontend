@@ -9,25 +9,25 @@
 <hr>
 <div nz-row>
     <div nz-col nzSpan="24">
-        <nz-table #basicTable [nzData]="invoice">
+        <nz-table #basicTable [nzData]="invoice"  [nzScroll]="{ x: '1200px', y: '240px' }">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th nzLeft nzWidth="40px">#</th>
                     <th>Correlative</th>
                     <th>Name</th>
                     <th>Scheduled</th>
                     <th>Email</th>
-                    <th>Actions</th>
+                    <th nzRight nzWidth="100px">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let data of basicTable.data; let i=index">
-                    <td>{{i+1}}</td>
+                    <td nzLeft>{{i+1}}</td>
                     <td>{{data.correlative}}</td>
                     <td>{{data.name}}</td>
-                    <td>{{data.scheduled}}</td>
+                    <td>{{data.scheduled | date}}</td>
                     <td>{{data.email}}</td>
-                    <td>
+                    <td nzRight>
                         <a (click)="mostrar(data)"><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
                         <nz-divider nzType="vertical"></nz-divider>
                         <a nz-popconfirm nzPopconfirmTitle="¿Está seguro de borrar el registro?"
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div nz-row [nzGutter]="8">
-                <div nz-col nzSpan="24">
+                <div nz-col nzSpan="12">
                     <nz-form-item>
                         <nz-form-label>Phone</nz-form-label>
                         <nz-form-control nzErrorTip="Phone incorrect">
@@ -95,9 +95,7 @@
                         </nz-form-control>
                     </nz-form-item>
                 </div>
-            </div>
-            <div nz-row [nzGutter]="8">
-                <div nz-col nzSpan="24">
+                <div nz-col nzSpan="12">
                     <nz-form-item>
                         <nz-form-label>Email</nz-form-label>
                         <nz-form-control nzErrorTip="Email incorrect">
