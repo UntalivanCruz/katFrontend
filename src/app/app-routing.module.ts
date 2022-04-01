@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginGuardian } from './api/services/login.guardian.service';
+import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -11,10 +13,14 @@ const routes: Routes = [
   { 
     path: '',
     component: MenuComponent,
+    canActivate:[LoginGuardian],
     children:[
       {path:'home', component:HomeComponent},
       {path:'invoice',component:InvoiceComponent}
     ]
+},
+{
+  path:"**",component:ErrorComponent
 }
 ];
 

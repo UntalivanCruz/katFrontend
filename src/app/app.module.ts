@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ApiInterceptor } from './api.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 
@@ -32,8 +33,16 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { LoginGuardian } from './api/services/login.guardian.service';
+import { ErrorComponent } from './pages/error/error.component';
 
 registerLocaleData(en);
+
+export const API_INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useExisting: forwardRef(() => ApiInterceptor),
+  multi: true
+};
 
 @NgModule({
   declarations: [
@@ -41,7 +50,8 @@ registerLocaleData(en);
     MenuComponent,
     HomeComponent,
     LoginComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +78,11 @@ registerLocaleData(en);
     NzDatePickerModule,
     NzInputNumberModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US },
+    ApiInterceptor,
+    API_INTERCEPTOR_PROVIDER,
+    LoginGuardian
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

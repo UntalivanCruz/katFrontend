@@ -6,3 +6,4 @@ export { InvoiceInvoiceDetailControllerService } from './services/invoice-invoic
 export { ItemControllerService } from './services/item-controller.service';
 export { ItemInvoiceDetailControllerService } from './services/item-invoice-detail-controller.service';
 export { PingControllerService } from './services/ping-controller.service';
+export { UserControllerService } from './services/user-controller.service';

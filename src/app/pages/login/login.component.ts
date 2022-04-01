@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-//import { UserControllerService } from 'src/app/api/services';
+import { UserControllerService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.valid) {
       this.formulario = false;
       this.loading = true;
-  /*    this.userService.login({'body': this.validateForm.value}).subscribe(resp => {
+      this.userService.login({'body': this.validateForm.value}).subscribe(resp => {
         const token:any=resp.token;
         if(token){
-          localStorage.setItem('token', token);*/
+          localStorage.setItem('token', token);
           this.message.success('Bienvenido!')
-          this.route.navigate(['home']);/*
+          this.route.navigate(['home']);
         }else{
           this.message.error('Error inesperado, contactese con su administrador de sistemas')
         }
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         this.formulario = true;
         this.loading = false;
       }
-      )*/
+      )
 
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private route:Router,
     private message:NzMessageService,
-   // private userService:UserControllerService
+    private userService:UserControllerService
     ) {}
 
   ngOnInit(): void {

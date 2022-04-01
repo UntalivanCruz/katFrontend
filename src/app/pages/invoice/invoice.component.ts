@@ -50,7 +50,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   mostrar(data?: Invoice): void {
-    if (data?.id) {
+     if (data?.id) {
       this.formInvoice.setValue({ ...data, 'special': [] })
     }
     this.visible = true

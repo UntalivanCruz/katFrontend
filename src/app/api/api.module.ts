@@ -12,6 +12,7 @@ import { InvoiceInvoiceDetailControllerService } from './services/invoice-invoic
 import { ItemControllerService } from './services/item-controller.service';
 import { ItemInvoiceDetailControllerService } from './services/item-invoice-detail-controller.service';
 import { PingControllerService } from './services/ping-controller.service';
+import { UserControllerService } from './services/user-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -29,6 +30,7 @@ import { PingControllerService } from './services/ping-controller.service';
     ItemControllerService,
     ItemInvoiceDetailControllerService,
     PingControllerService,
+    UserControllerService,
     ApiConfiguration
   ],
 })

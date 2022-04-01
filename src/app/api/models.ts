@@ -12,5 +12,7 @@ export { InvoicePartial } from './models/invoice-partial';
 export { NewInvoiceDetailInItem } from './models/new-invoice-detail-in-item';
 export { NewItem } from './models/new-item';
 export { ItemPartial } from './models/item-partial';
+export { User } from './models/user';
+export { NewUser } from './models/new-user';
 export { Count as LoopbackCount } from './models/loopback/count';
 export { PingResponse } from './models/ping-response';
